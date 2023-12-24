@@ -53,6 +53,10 @@ vim.keymap.set('n', 'fg',
   function()
     builtin.git_files()
   end)
+vim.keymap.set('n', 'fb',
+  function()
+    builtin.buffers()
+  end)
 vim.keymap.set('n', 'fr', function()
   builtin.live_grep()
 end)

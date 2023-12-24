@@ -19,8 +19,10 @@ set.wrap = false
 set.swapfile = false
 set.incsearch = true
 set.scrolloff=8
+set.wrapmargin=2
 set.wildignore:append { '*/node_modules/*' }
 set.wildignore:append { '*/.git/*' }
+set.completeopt = 'menuone,noselect'
 
 if vim.fn.has('termguicolors') == 1 then
 	set.termguicolors = true

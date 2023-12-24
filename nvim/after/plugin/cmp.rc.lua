@@ -18,11 +18,14 @@ cmp.setup({
         }),
     }),
     sources = cmp.config.sources({
+        { name = 'orgmode' },
+        { name = 'luasnip'},
         { name = 'nvim_lsp' },
-        { name = 'buffer' }
+        { name = 'buffer' },
+        { name = 'path' }
     }),
 })
 
 vim.cmd [[
-    set completeopt=menuone,noinsert,noselect,
+    set completeopt=menu,menuone,noinsert,noselect,
 ]]

@@ -10,3 +10,4 @@ keymap.set('', 's<right>', '<C-w>l')
 
 keymap.set('n', '+', '<C-a>')
 keymap.set('n', '-', '<C-x>')
+keymap.set('n', '<C-f>', 'gqG')

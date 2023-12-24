@@ -21,9 +21,8 @@ local on_attach = function(client, bufnr)
   --buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
-
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
+local capabilities = require('cmp_nvim_lsp').default_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
@@ -34,16 +33,54 @@ nvim_lsp.flow.setup {
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
   cmd = { "typescript-language-server", "--stdio" },
-  capabilities = capabilities
+  capabilities = capabilities,
+  root_dir = function() return vim.loop.cwd() end
+}
+
+--nvim_lsp.phpactor.setup {
+--    on_attach = on_attach,
+--    init_options = {
+--        ["language_server_phpstan.enabled"] = false,
+--        ["language_server_psalm.enabled"] = false,
+--    }
+--}
+
+nvim_lsp.intelephense.setup {
+    on_attach = on_attach,
+    cmd = {"intelephense", "--stdio"},
+    filetypes = {"php"},
+    root_dir = function() return vim.loop.cwd() end,
 }
 
 nvim_lsp.sourcekit.setup {
   on_attach = on_attach,
 }
 
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.gopls.setup {
+    cmd = {"gopls", "serve"},
+    filetypes = {"go", "gomod"},
+    root_dir = function() return vim.loop.cwd() end,
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
+  }
+
+nvim_lsp.hls.setup {
+    on_attach = on_attach,
+    filetypes = {"haskell", "lhaskell", "cabal"},
+    cmd = { "haskell-language-server-wrapper", "--lsp" },
+    capabilities = capabilities,
+    root_dir = function() return vim.loop.cwd() end
+}
+
+nvim_lsp.lua_ls.setup {
   on_attach = on_attach,
   settings = {
     Lua = {
