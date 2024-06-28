@@ -1,0 +1,15 @@
+#!/bin/bash
+if [[ $1 == "--help" ]]; then
+    echo "Usage: <tmuxer> -d <path to directory> -w <windows> -p <number of panes for each window>";
+    echo "      Example: tmuxer -d ~/projects -w 2 -p 0,3";
+    exit 1;
+elif [[ $1 == "--version" ]]; then
+    echo "tmuxer version 0.0.1";
+    exit 1;
+else
+    echo "tmuxer: missing DIRECTORY";
+    echo "Usage: tmuxer [OPTION]... [DIRECTORY]";
+    echo "";
+    echo "Try 'tmuxer --help' for more information.";
+    exit 1;
+fi
